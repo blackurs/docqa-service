@@ -37,7 +37,9 @@ jobs:
 
   test:
     name: Tests (Python ${{ matrix.python-version }})
-    runs-on: ubuntu-latest
+    # Ubuntu 22.04 is pinned because setup-python has no CPython 3.9 build
+    # for the newest runner images (Ubuntu 26.04).
+    runs-on: ubuntu-22.04
     strategy:
       fail-fast: false
       matrix:
