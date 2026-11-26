@@ -1,0 +1,75 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "docqa-service"
+version = "1.0.0"
+description = "Production-like document Q&A service powered by an LLM"
+readme = "README.md"
+requires-python = ">=3.9"
+license = "MIT"
+authors = [{ name = "docqa-service contributors" }]
+keywords = ["llm", "fastapi", "qa", "document", "rag"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.12",
+    "Framework :: FastAPI",
+]
+dependencies = [
+    "fastapi>=0.110,<1.0",
+    "uvicorn>=0.27,<1.0",
+    "pydantic>=2.5,<3.0",
+    "pydantic-settings>=2.1,<3.0",
+    "httpx>=0.26,<1.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4,<10.0",
+    "pytest-asyncio>=0.23,<2.0",
+    "ruff>=0.4,<1.0",
+    "build>=1.0,<2.0",
+]
+
+[project.scripts]
+docqa = "docqa.cli:main"
+
+[project.urls]
+Documentation = "https://github.com/example/docqa-service#readme"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+docqa = ["py.typed"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "C4", "SIM"]
+# Keep `typing.List/Optional` style: the project supports Python 3.9, where
+# `X | None` cannot be evaluated at runtime by pydantic/FastAPI.
+ignore = ["UP006", "UP035", "UP045"]
+
+[tool.ruff.lint.per-file-ignores]
+# FastAPI's dependency injection intentionally calls Depends(...) in defaults.
+"src/docqa/api/routes.py" = ["B008"]
+"src/docqa/api/deps.py" = ["B008"]
+# The stopword block reads better as a triple-quoted string.
+"src/docqa/services/retrieval.py" = ["SIM905"]
+
+[tool.ruff.format]
+quote-style = "double"
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+testpaths = ["tests"]
+pythonpath = ["src"]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+addopts = "-ra"
