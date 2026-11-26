@@ -101,8 +101,16 @@ python scripts/demo.py
 * Кеш и метрики in-process: для нескольких реплик нужны Redis/Prometheus.
 * Ретривер лексический: на перефразированных вопросах уступает эмбеддингам.
 * Нет аутентификации/rate limiting на уровне приложения (предполагается gateway).
-* CI-workflow добавлен, но не запускался на GitHub до пуша; локально выполнены те
-  же команды (ruff + pytest + установка пакета).
+* Job тестов зафиксирован на `ubuntu-22.04`: под новые образы раннера нет сборки
+  Python 3.9 в `actions/setup-python`.
+
+## Статус CI
+
+PR #1: <https://github.com/blackurs/docqa-service/pull/1>
+
+Прогон [45789560815](https://github.com/blackurs/docqa-service/actions/runs/45789560815) —
+все job'ы зелёные: `Lint (ruff)`, `Tests (Python 3.9/3.11/3.12)`,
+`Docker image builds`.
 
 ## Как создать PR
 

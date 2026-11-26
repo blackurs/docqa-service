@@ -293,9 +293,23 @@ Workflow: [`.github/workflows/ci.yml`](.github/workflows/ci.yml).
 | `docker` | `docker build` |
 
 Локально выполнены те же команды (см. разделы 2 и 4), все зелёные. Docker-демон на
-машине разработчика отсутствует, поэтому образ проверяется job'ом `docker` после
-пуша в GitHub. Прогон workflow в GitHub Actions выполняется автоматически при
-создании PR.
+машине разработчика отсутствует, поэтому образ проверен job'ом `docker` в GitHub.
+
+Фактический прогон на PR #1:
+[run 45789560815](https://github.com/blackurs/docqa-service/actions/runs/45789560815)
+— **все 5 job'ов успешны**:
+
+```text
+success  Lint (ruff)
+success  Tests (Python 3.9)
+success  Tests (Python 3.11)
+success  Tests (Python 3.12)
+success  Docker image builds
+```
+
+Замечание по инфраструктуре: job тестов зафиксирован на `ubuntu-22.04`, потому что
+у `actions/setup-python` нет сборки CPython 3.9 под новые образы раннера
+(`ubuntu-24.04`/`26.04`). Локально 3.9.25 проверен отдельно (раздел 2).
 
 ## 8. Скриншоты / видео
 

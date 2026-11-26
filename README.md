@@ -1,5 +1,9 @@
 # docqa-service
 
+[![CI](https://github.com/blackurs/docqa-service/actions/workflows/ci.yml/badge.svg)](https://github.com/blackurs/docqa-service/actions/workflows/ci.yml)
+[![Python 3.9+](https://img.shields.io/badge/python-3.9%2B-blue)](pyproject.toml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+
 Production-like **Q&A по документу** на FastAPI и LLM: пользователь присылает вопрос и
 текст документа, сервис выбирает релевантные фрагменты, отправляет их модели, чистит
 ответ и возвращает его вместе с цитатами.
@@ -356,7 +360,8 @@ python scripts/demo.py # сквозное демо (5 сценариев)
 
 ## CI
 
-`.github/workflows/ci.yml`:
+Workflow: [`.github/workflows/ci.yml`](.github/workflows/ci.yml). Последний прогон —
+[Actions](https://github.com/blackurs/docqa-service/actions/workflows/ci.yml).
 
 * **lint** — `ruff check` + `ruff format --check`;
 * **test** — Python 3.9/3.11/3.12, установка зависимостей и пакета, `pip check`,
