@@ -31,7 +31,7 @@ $ ruff check .
 All checks passed!
 
 $ ruff format --check .
-37 files already formatted
+All checked files are formatted
 
 $ pip check
 No broken requirements found.
