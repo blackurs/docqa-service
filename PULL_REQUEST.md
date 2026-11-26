@@ -77,7 +77,7 @@ python scripts/demo.py
 | Тесты | Все зелёные | ✅ 99 passed |
 | Линтер | Без замечаний | ✅ ruff check / format |
 
-Подробные выводы: [`TESTING.md`](../TESTING.md).
+Подробные выводы: [`TESTING.md`](TESTING.md).
 
 ## Чек-лист самопроверки
 
